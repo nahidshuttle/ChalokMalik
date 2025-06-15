@@ -1,38 +1,28 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>ChalokMalik.com</title>
   <link rel="icon" href="https://www.shuttlebd.com/img/shuttle.78e5e1b8.svg" type="image/x-icon" />
   <style>
-    /* Reset default margin and padding */
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
       height: 100%;
       width: 100%;
       overflow: hidden;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
+      background: #fff;
     }
 
-    /* Fullscreen iframe responsive */
     iframe {
       position: fixed;
-      top: 0; 
+      top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       border: none;
       display: block;
-      /* For smooth rendering on some mobile browsers */
-      -webkit-overflow-scrolling: touch;
-      overflow: hidden;
     }
   </style>
 </head>
@@ -41,9 +31,8 @@
   <iframe
     src="https://script.google.com/a/macros/shuttlebd.com/s/AKfycbzCQ6n32n0dX5E3Jraz-4cbjh9MhKBM4lfoxbtSF--vvJTZTzVPoXn_ZpTJ58RfcT8v/exec"
     allowfullscreen
-    sandbox="allow-scripts allow-same-origin allow-forms"
-    scrolling="no"
-    >
+    sandbox="allow-scripts allow-forms allow-same-origin"
+    scrolling="auto">
   </iframe>
 
 </body>
