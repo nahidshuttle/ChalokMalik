@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>ChalokMalik.com</title>
   <link rel="icon" href="https://www.shuttlebd.com/img/shuttle.78e5e1b8.svg" type="image/x-icon" />
   <style>
@@ -10,9 +10,10 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #ffffff;
+      width: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
+      background: #ffffff;
     }
 
     #loader {
@@ -22,28 +23,44 @@
       transform: translate(-50%, -50%);
       font-size: 18px;
       color: #555;
+      z-index: 99;
     }
 
     iframe {
-      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
+      width: 100%;
       border: none;
       display: none;
+    }
+
+    #controls {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn,
+    #fullscreen-btn {
+      padding: 6px 12px;
+      background-color: #4F46E5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     #fullscreen-btn {
       position: fixed;
       bottom: 15px;
       right: 15px;
-      padding: 10px 16px;
-      background-color: #4F46E5;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 10;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -51,17 +68,32 @@
 
   <div id="loader">Loading ChalokMalik...</div>
 
+  <!-- Language Toggle Buttons -->
+  <div id="controls">
+    <button class="lang-btn" onclick="setLanguage('en')">English</button>
+    <button class="lang-btn" onclick="setLanguage('bn')">বাংলা</button>
+  </div>
+
+  <!-- Google Apps Script Web App Iframe -->
   <iframe 
     id="gasFrame"
-    src="https://script.google.com/a/macros/shuttlebd.com/s/AKfycbzCQ6n32n0dX5E3Jraz-4cbjh9MhKBM4lfoxbtSF--vvJTZTzVPoXn_ZpTJ58RfcT8v/exec"
+    src=""
     allowfullscreen>
   </iframe>
 
+  <!-- Optional Fullscreen Button -->
   <button id="fullscreen-btn" onclick="toggleFullScreen()">Go Fullscreen</button>
 
   <script>
     const iframe = document.getElementById('gasFrame');
     const loader = document.getElementById('loader');
+    const baseURL = "https://script.google.com/a/macros/shuttlebd.com/s/AKfycbzCQ6n32n0dX5E3Jraz-4cbjh9MhKBM4lfoxbtSF--vvJTZTzVPoXn_ZpTJ58RfcT8v/exec";
+
+    function setLanguage(lang) {
+      loader.style.display = 'block';
+      iframe.style.display = 'none';
+      iframe.src = `${baseURL}?lang=${lang}`;
+    }
 
     iframe.onload = function () {
       loader.style.display = 'none';
@@ -71,10 +103,13 @@
     function toggleFullScreen() {
       if (iframe.requestFullscreen) {
         iframe.requestFullscreen().catch(err => {
-          alert("Your browser doesn't allow fullscreen automatically.");
+          alert("Fullscreen not supported on your browser.");
         });
       }
     }
+
+    // Default Language
+    setLanguage('en');
   </script>
 
 </body>
